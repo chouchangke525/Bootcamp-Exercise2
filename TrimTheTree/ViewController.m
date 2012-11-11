@@ -62,7 +62,7 @@
     [tree addSubview:imageView];
     
     [self addGestureRecognizersToOrnament:imageView];
-    
+
 }
 
 /*******************************************************************************
@@ -133,5 +133,37 @@
         [gestureRecognizer setScale:1];
     }
 }
+
+#pragma mark - Shake Detection
+/*******************************************************************************
+ * @method      canBecomeFirstResponder
+ * @abstract    To receive motion events, the responder object that is to handle them must be the first responder.
+ * @description
+ *******************************************************************************/
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
+/*******************************************************************************
+ * @method          motionEnded:withEvent
+ * @abstract
+ * @description     
+ ******************************************************************************/
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    if (motion == UIEventTypeMotion && event.type == UIEventSubtypeMotionShake) {
+        NSLog(@"%@ motionEnded", [NSDate date]);
+        
+        // Get the tree view (tag==100)
+        UIView *tree = [self.view viewWithTag:100];
+        // Remove all subviews (the ornaments) 
+        for (UIView *subview in [tree subviews]) {
+            [subview removeFromSuperview];
+        }
+    }
+ }
+
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event {}
+- (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event {}
 
 @end

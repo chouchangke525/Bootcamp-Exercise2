@@ -12,7 +12,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleAspectFit" image="tree@2x.png" translatesAutoresizingMaskIntoConstraints="NO" id="9eo-bp-qXc">
+                            <imageView tag="100" contentMode="scaleAspectFit" image="tree@2x.png" translatesAutoresizingMaskIntoConstraints="NO" id="9eo-bp-qXc">
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="15W-1f-44l" appends="YES" id="NjO-BH-dgn"/>
@@ -37,22 +37,12 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="151" y="0.0"/>
         </scene>
     </scenes>
     <resources>
         <image name="tree@2x.png" width="1656" height="2307"/>
     </resources>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="tapToAddOrnament:" candidateClass="UITapGestureRecognizer"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
