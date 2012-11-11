@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 // Class Extension (Private) ///////////////////////////////////////////////////
 @interface ViewController ()
@@ -16,6 +17,7 @@
 - (void)panPiece:(UIPanGestureRecognizer *)gestureRecognizer;
 - (void)rotatePiece:(UIRotationGestureRecognizer *)gestureRecognizer;
 - (void)scalePiece:(UIPinchGestureRecognizer *)gestureRecognizer;
+- (void)playSoundEffect:(NSString*)soundName;
 @end
 
 // Class ///////////////////////////////////////////////////////////////////////
@@ -47,7 +49,7 @@
  * @description     Add an UIImage to the parentview
  ******************************************************************************/
 - (IBAction)tapToAddOrnament:(UITapGestureRecognizer *)sender
-{
+{ 
     NSLog(@">>>> Single Tap from %@",sender);
     UIView *tree = sender.view;
     
@@ -67,13 +69,15 @@
     [tree addSubview:imageView];
     
     [self addGestureRecognizersToOrnament:imageView];
-
+    
+    // Play sound when adding ornament
+    [self playSoundEffect:@"Tink"];
 }
 
 /*******************************************************************************
  * @method          addGestureToOrnament:
  * @abstract        Add gestures to the added ornament to detect rotation, translation, and scaling
- * @description     <# Description #>
+ * @description      
  ******************************************************************************/
 - (void)addGestureRecognizersToOrnament:(UIView *)piece
 {
@@ -165,10 +169,28 @@
         for (UIView *subview in [tree subviews]) {
             [subview removeFromSuperview];
         }
+        
+        // Play a sound effect
+        [self playSoundEffect:@"Cartoon Boing"];
     }
  }
-
 - (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event {}
 - (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event {}
+
+#pragma mark - Sound Effect
+/*******************************************************************************
+ * @method          playSoundEffect
+ * @abstract        Play a short sound when an ornament is added
+ * @description     <# Description #>
+ ******************************************************************************/
+- (void)playSoundEffect:(NSString*)soundName
+{
+    NSLog(@">>> Play sound named: %@",soundName);
+    NSString *soundPath = [[NSBundle mainBundle] pathForResource:soundName ofType:@"caf"];
+    NSURL *soundURL = [NSURL fileURLWithPath:soundPath];
+    SystemSoundID soundID;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &soundID);
+    AudioServicesPlaySystemSound(soundID);
+}
 
 @end

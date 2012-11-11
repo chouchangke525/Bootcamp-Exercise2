@@ -25,6 +25,9 @@
 		37C300EC164F1E1D00F09C7A /* tree@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37C300E2164F1E1D00F09C7A /* tree@2x.png */; };
 		37C300EE164F1E2F00F09C7A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37C300ED164F1E2F00F09C7A /* Icon.png */; };
 		37C300F0164F1E3500F09C7A /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37C300EF164F1E3500F09C7A /* Icon@2x.png */; };
+		37C300F2164F6E0800F09C7A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C300F1164F6E0800F09C7A /* AudioToolbox.framework */; };
+		37C300F6164F6FC000F09C7A /* Cartoon Boing.caf in Resources */ = {isa = PBXBuildFile; fileRef = 37C300F4164F6FC000F09C7A /* Cartoon Boing.caf */; };
+		37C300F7164F6FC000F09C7A /* Tink.caf in Resources */ = {isa = PBXBuildFile; fileRef = 37C300F5164F6FC000F09C7A /* Tink.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +54,9 @@
 		37C300E2164F1E1D00F09C7A /* tree@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tree@2x.png"; sourceTree = "<group>"; };
 		37C300ED164F1E2F00F09C7A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		37C300EF164F1E3500F09C7A /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
+		37C300F1164F6E0800F09C7A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		37C300F4164F6FC000F09C7A /* Cartoon Boing.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cartoon Boing.caf"; sourceTree = "<group>"; };
+		37C300F5164F6FC000F09C7A /* Tink.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Tink.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37C300F2164F6E0800F09C7A /* AudioToolbox.framework in Frameworks */,
 				37C300B6164F1C2A00F09C7A /* UIKit.framework in Frameworks */,
 				37C300B8164F1C2A00F09C7A /* Foundation.framework in Frameworks */,
 				37C300BA164F1C2A00F09C7A /* CoreGraphics.framework in Frameworks */,
@@ -70,6 +77,7 @@
 		37C300A6164F1C2A00F09C7A = {
 			isa = PBXGroup;
 			children = (
+				37C300F1164F6E0800F09C7A /* AudioToolbox.framework */,
 				37C300BB164F1C2A00F09C7A /* TrimTheTree */,
 				37C300B4164F1C2A00F09C7A /* Frameworks */,
 				37C300B2164F1C2A00F09C7A /* Products */,
@@ -110,6 +118,7 @@
 		37C300BC164F1C2A00F09C7A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				37C300F3164F6FBF00F09C7A /* Sounds */,
 				37C300D8164F1E1D00F09C7A /* Images */,
 				37C300BD164F1C2A00F09C7A /* TrimTheTree-Info.plist */,
 				37C300BE164F1C2A00F09C7A /* InfoPlist.strings */,
@@ -135,6 +144,15 @@
 			);
 			name = Images;
 			path = ../Images;
+			sourceTree = "<group>";
+		};
+		37C300F3164F6FBF00F09C7A /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				37C300F4164F6FC000F09C7A /* Cartoon Boing.caf */,
+				37C300F5164F6FC000F09C7A /* Tink.caf */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +218,8 @@
 				37C300EC164F1E1D00F09C7A /* tree@2x.png in Resources */,
 				37C300EE164F1E2F00F09C7A /* Icon.png in Resources */,
 				37C300F0164F1E3500F09C7A /* Icon@2x.png in Resources */,
+				37C300F6164F6FC000F09C7A /* Cartoon Boing.caf in Resources */,
+				37C300F7164F6FC000F09C7A /* Tink.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
