@@ -28,6 +28,11 @@
     _ornamentImages = @[@"ornament_red", @"ornament_blue", @"ornament_purple"];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self resignFirstResponder];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
