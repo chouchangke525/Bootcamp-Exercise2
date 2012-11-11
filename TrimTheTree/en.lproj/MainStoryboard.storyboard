@@ -14,6 +14,9 @@
                         <subviews>
                             <imageView contentMode="scaleAspectFit" image="tree@2x.png" translatesAutoresizingMaskIntoConstraints="NO" id="9eo-bp-qXc">
                                 <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="15W-1f-44l" appends="YES" id="NjO-BH-dgn"/>
+                                </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -28,6 +31,11 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="15W-1f-44l">
+                    <connections>
+                        <action selector="tapToAddOrnament:" destination="2" id="WkF-mR-Ij2"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
         </scene>
     </scenes>
@@ -40,6 +48,9 @@
         </class>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="tapToAddOrnament:" candidateClass="UITapGestureRecognizer"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
