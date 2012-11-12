@@ -6,12 +6,17 @@
 //  Copyright (c) 2012 T. Andrew Binkowski. All rights reserved.
 //
 
+// TODO: Animate the star, photo picker, AlertView
+
 #import "ViewController.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVFoundation.h>
 
 // Class Extension (Private) ///////////////////////////////////////////////////
 @interface ViewController ()
 @property (strong, nonatomic) NSArray *ornamentImages;
+@property (strong, nonatomic) AVAudioPlayer *backgroundMusic;
+
 // Class extension methods (note they do not have to be explicitly defined, compiler will identify them)
 - (void)addGestureRecognizersToOrnament:(UIView *)piece;
 - (void)panPiece:(UIPanGestureRecognizer *)gestureRecognizer;
@@ -28,6 +33,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     _ornamentImages = @[@"ornament_red", @"ornament_blue", @"ornament_purple"];
+    
+    [self playBackgroundMusic];
+    //[self animate];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -191,6 +199,22 @@
     SystemSoundID soundID;
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &soundID);
     AudioServicesPlaySystemSound(soundID);
+}
+
+/*******************************************************************************
+ * @method      playBackgroundMusic
+ * @abstract    <# abstract #>
+ * @description <# description #>
+ *******************************************************************************/
+- (void)playBackgroundMusic
+{
+    NSError *error;
+    NSString *backgroundMusicPath = [[NSBundle mainBundle] pathForResource:@"01 Jingle Bells" ofType:@"m4a"];
+    NSURL *backgroundMusicURL = [NSURL fileURLWithPath:backgroundMusicPath];
+    
+    _backgroundMusic = [[AVAudioPlayer alloc] initWithContentsOfURL:backgroundMusicURL error:&error];
+    [self.backgroundMusic prepareToPlay];
+    [self.backgroundMusic play];
 }
 
 @end
