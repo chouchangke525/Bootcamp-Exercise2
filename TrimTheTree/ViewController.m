@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 T. Andrew Binkowski. All rights reserved.
 //
 
-// TODO: photo picker, AlertView
-
 #import "ViewController.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
@@ -16,6 +14,7 @@
 @interface ViewController ()
 @property (strong, nonatomic) NSArray *ornamentImages;
 @property (strong, nonatomic) AVAudioPlayer *backgroundMusic;
+@property (copy, nonatomic) UIImage *currentOrnament;
 
 // Class extension methods (note they do not have to be explicitly defined, compiler will identify them)
 - (void)addGestureRecognizersToOrnament:(UIView *)piece;
@@ -67,7 +66,15 @@
     // Select a random image from our array
     int randomIndex = arc4random()%3;
     
-    UIImage *image = [UIImage imageNamed:[self.ornamentImages objectAtIndex:randomIndex]];
+    UIImage *image;
+    // If there is an currentOrnament, we will use it as the image; if not, use a random star
+    if (self.currentOrnament == nil) {
+        image = [UIImage imageNamed:[self.ornamentImages objectAtIndex:randomIndex]];
+    } else {
+        image = self.currentOrnament;
+        // Nil this out so that the next ornament will be a star
+        self.currentOrnament = nil;
+    }
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
     
     // Scale the image down, so it is not pixelated when we scale it up
@@ -273,4 +280,51 @@
     NSLog(@">>>> InfoButton button clicked at index %d", buttonIndex);
 }
 
+#pragma mark - Image Picker for Custom Ornament
+
+/*******************************************************************************
+ * @method      showImagePickerForCustomOrnament
+ * @abstract    <# abstract #>
+ * @description <# description #>
+ *******************************************************************************/
+- (IBAction)showImagePickerForCustomOrnament:(UIButton *)sender
+{
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    
+    // If our device has a camera, we want to take a picture, otherwise, we just pick from photo library
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        [imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+    } else {
+        [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    }
+    
+    // Tell the UIImagePickerController to send messages to this view controller
+    imagePicker.delegate = self;
+    
+    // Show image picker on the screen
+    [self presentViewController:imagePicker animated:YES completion:^{
+        NSLog(@">>>> Image picker was presented");}
+     ];
+}
+
+/*******************************************************************************
+ * @method      imagePickerController:
+ * @abstract    Show the system photo picker
+ * @description  
+ *******************************************************************************/
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    NSLog(@">>>> Image selected: %@",info);
+    
+    // Get picked image from info dictionary
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+
+    // Set our currentImage property to the selected image
+    self.currentOrnament = image;
+    
+    // Take image picker off the screen
+    [[picker presentingViewController] dismissViewControllerAnimated:YES completion:^{
+        NSLog(@">>>> Image picker was dismissed");
+    }];
+}
 @end
