@@ -34,8 +34,8 @@
 	// Do any additional setup after loading the view, typically from a nib.
     _ornamentImages = @[@"ornament_red", @"ornament_blue", @"ornament_purple"];
     
-    [self playBackgroundMusic];
-    //[self animate];
+    //[self playBackgroundMusic];
+    [self animateStarToTopOfTree];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -215,6 +215,31 @@
     _backgroundMusic = [[AVAudioPlayer alloc] initWithContentsOfURL:backgroundMusicURL error:&error];
     [self.backgroundMusic prepareToPlay];
     [self.backgroundMusic play];
+}
+
+#pragma mark - Animation Effects
+/*******************************************************************************
+ * @method          animateStarToTopOfTree
+ * @abstract        Animate the star offscreen to the top of the tree
+ * @description     Add to the tree image view
+ ******************************************************************************/
+- (void)animateStarToTopOfTree
+{
+    CGRect offscreen = CGRectMake(0, 500, 50, 50);
+    
+    UIImageView *star = [[UIImageView alloc] initWithFrame:offscreen];
+    star.image = [UIImage imageNamed:@"star"];
+    UIView *tree = [self.view viewWithTag:100];
+    [tree addSubview:star];
+    
+    [UIView animateWithDuration:2.0 delay:0.25 options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         star.center = CGPointMake(165, 25);
+                     }
+                     completion:^(BOOL  completed) {
+                         NSLog(@">>>> Star is now at top of tree");
+                     }
+     ];
 }
 
 @end
