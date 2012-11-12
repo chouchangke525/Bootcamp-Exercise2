@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 T. Andrew Binkowski. All rights reserved.
 //
 
-// TODO: Animate the star, photo picker, AlertView
+// TODO: photo picker, AlertView
 
 #import "ViewController.h"
 #import <AudioToolbox/AudioToolbox.h>
@@ -240,6 +240,37 @@
                          NSLog(@">>>> Star is now at top of tree");
                      }
      ];
+}
+
+#pragma mark - Buttons
+
+/*******************************************************************************
+ * @method          tapInfoButton
+ * @abstract        Show an alert dialogue on tap
+ * @description
+ ******************************************************************************/
+- (IBAction)tapInfoButton:(UIButton *)sender {
+
+    UIActionSheet *msg = [[UIActionSheet alloc]
+                          initWithTitle:
+                          @"1. Tap the tree to add ornaments.\n"
+                          "2. Move or resize the ornaments by dragging and pinching.\n"
+                          "3. Shake to start over.\n"
+                          delegate:self
+                          cancelButtonTitle:nil  destructiveButtonTitle:nil
+                          otherButtonTitles:@"Okay", nil];
+    [msg showInView:self.view];
+}
+
+#pragma mark - Alerts View Delegate
+/*******************************************************************************
+ * @method          <# Method Name #>
+ * @abstract        <# Abstract #>
+ * @description     <# Description #>
+ ******************************************************************************/
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@">>>> InfoButton button clicked at index %d", buttonIndex);
 }
 
 @end

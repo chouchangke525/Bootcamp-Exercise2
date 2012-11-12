@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController <UIGestureRecognizerDelegate>
+@interface ViewController : UIViewController <UIGestureRecognizerDelegate,UIActionSheetDelegate>
 - (IBAction)tapToAddOrnament:(UITapGestureRecognizer *)sender;
+- (IBAction)tapInfoButton:(UIButton *)sender;
 
 @end
