@@ -33,7 +33,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     _ornamentImages = @[@"ornament_red", @"ornament_blue", @"ornament_purple"];
     
-    //[self playBackgroundMusic];
+    [self playBackgroundMusic];
     [self animateStarToTopOfTree];
 }
 
